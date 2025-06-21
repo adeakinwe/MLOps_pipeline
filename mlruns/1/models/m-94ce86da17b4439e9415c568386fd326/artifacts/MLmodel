@@ -1,0 +1,22 @@
+artifact_path: /Users/mac/Projects/MLops_pipeline/mlruns/1/models/m-94ce86da17b4439e9415c568386fd326/artifacts
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.2
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.core.Booster
+    model_format: xgb
+    xgb_version: 3.0.2
+mlflow_version: 3.1.0
+model_id: m-94ce86da17b4439e9415c568386fd326
+model_size_bytes: 3124672
+model_uuid: m-94ce86da17b4439e9415c568386fd326
+prompts: null
+run_id: 4161ec3cf508418fb990b3fbb250aa8a
+utc_time_created: '2025-06-21 17:11:52.468079'
