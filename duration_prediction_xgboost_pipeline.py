@@ -50,7 +50,7 @@ def create_X(df, dv=None):
     return X, dv
 
 
-def train_model(X_train, y_train, X_val, y_val, dv):
+def train_model(X_train, y_train, X_val, y_val, dv, year, month):
     with mlflow.start_run() as run:
         run_id = run.info.run_id  # Capture run_id
 
@@ -58,8 +58,8 @@ def train_model(X_train, y_train, X_val, y_val, dv):
         val = xgb.DMatrix(X_val, label=y_val)
 
         mlflow.set_tag("engineer", "richkinwe")
-        mlflow.log_param("train_data_path", "green_tripdata/green_tripdata_2021-01.parquet")
-        mlflow.log_param("val_data_path", "green_tripdata/green_tripdata_2021-02.parquet")
+        mlflow.log_param("train_data_path", f"nyc_taxi_green_tripdata{year}-{month:02d}.parquet")
+        #mlflow.log_param("val_data_path", f"nyc_taxi_green_tripdata{year}-{month:02d}.parquet")
         mlflow.set_tag("model", "xgboost")
 
         best_params = {
@@ -112,7 +112,7 @@ def run(year, month):
     y_train = df_train['duration'].values
     y_val = df_val['duration'].values
 
-    run_id = train_model(X_train, y_train, X_val, y_val, dv)
+    run_id = train_model(X_train, y_train, X_val, y_val, dv, year, month)
     print(f'Training completed. Run ID: {run_id}')
     return run_id
 
