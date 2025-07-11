@@ -4,3 +4,4 @@ output/
 green_tripdata/
 mlruns/
 models/
+*.db
