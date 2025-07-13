@@ -20,7 +20,8 @@ models_folder.mkdir(exist_ok=True)
 
 
 def read_dataframe(year, month):
-    url = f'https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_{year}-{month:02d}.parquet'
+    #url = f'https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_{year}-{month:02d}.parquet'
+    url = f'green_tripdata/green_tripdata_{year}-{month:02d}.parquet'
     df = pd.read_parquet(url)
 
     df['duration'] = (df.lpep_dropoff_datetime - df.lpep_pickup_datetime)
@@ -57,9 +58,12 @@ def train_model(X_train, y_train, X_val, y_val, dv, year, month):
         train = xgb.DMatrix(X_train, label=y_train)
         val = xgb.DMatrix(X_val, label=y_val)
 
+        year_val = year if month < 12 else year + 1
+        month_val = month + 1 if month < 12 else 1
+
         mlflow.set_tag("engineer", "richkinwe")
         mlflow.log_param("train_data_path", f"nyc_taxi_green_tripdata{year}-{month:02d}.parquet")
-        #mlflow.log_param("val_data_path", f"nyc_taxi_green_tripdata{year}-{month:02d}.parquet")
+        mlflow.log_param("val_data_path", f"nyc_taxi_green_tripdata{year_val}-{month_val:02d}.parquet")
         mlflow.set_tag("model", "xgboost")
 
         best_params = {
@@ -102,9 +106,10 @@ def run(year, month):
 
     df_train = read_dataframe(year=year, month=month)
 
-    input_year = year if month < 12 else year + 1
-    input_month = month + 1 if month < 12 else 1
-    df_val = read_dataframe(year=input_year, month=input_month)
+    year_val = year if month < 12 else year + 1
+    month_val = month + 1 if month < 12 else 1
+
+    df_val = read_dataframe(year=year_val, month=month_val)
 
     X_train, dv = create_X(df_train)
     X_val, _ = create_X(df_val, dv)

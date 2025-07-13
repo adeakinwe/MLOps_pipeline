@@ -5,3 +5,4 @@ green_tripdata/
 mlruns/
 models/
 *.db
+mlflow.db
