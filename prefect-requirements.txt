@@ -1,0 +1,5 @@
+prefect==2.14.12
+alembic==1.11.3
+SQLAlchemy==1.4.49
+fastapi==0.95.2
+uvicorn==0.22.0

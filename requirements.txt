@@ -1,0 +1,9 @@
+pandas
+fastparquet
+seaborn
+xgboost
+scikit-learn
+mlflow
+pandas==2.3.0
+hyperopt==0.2.7
+prefect==2.10.8

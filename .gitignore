@@ -1,4 +1,5 @@
 mlflow-env/
+mlflow-311venv/
 yellow_tripdata/
 output/
 green_tripdata/
