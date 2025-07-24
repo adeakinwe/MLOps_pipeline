@@ -25,3 +25,9 @@ cd ~/Projects/MLops_pipeline/
 # Create a new virtual environment using Python 3.11
 /usr/local/bin/python3.11 -m venv mlflow-311venv
 source mlflow-311venv/bin/activate
+pip install --upgrade pip
+pip install ipykernel
+python -m ipykernel install --user --name=mlflow-env --display-name "Experiment-tracking (mlflow311-venv)"
+pip install mlflow
+python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5001
+#aws python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root s3://mlflow-ride-duration21-prediction-artifact-store --host 127.0.0.1 --port 5001
