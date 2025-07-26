@@ -1,3 +1,4 @@
+.DS_Store
 mlflow-env/
 mlflow-311venv/
 yellow_tripdata/
