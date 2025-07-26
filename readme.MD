@@ -30,4 +30,4 @@ pip install ipykernel
 python -m ipykernel install --user --name=mlflow-env --display-name "Experiment-tracking (mlflow311-venv)"
 pip install mlflow
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5001
-#aws python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root s3://mlflow-ride-duration21-prediction-artifact-store --host 127.0.0.1 --port 5001
+#aws mlflow server --backend-store-uri sqlite:///mlflow3.db --default-artifact-root s3://mlflow-ride-duration21-prediction-artifact-store --host 127.0.0.1 --port 5003
